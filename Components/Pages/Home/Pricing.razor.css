@@ -1,0 +1,54 @@
+.pricing-left {
+  flex: 1;
+}
+
+.pricing-right {
+  flex: 1;
+}
+
+.quote {
+  width: 400px;
+  height: auto;
+  background-color: rgb(249, 249, 248);
+  padding: 20px;
+  margin: 30px auto;
+}
+
+@media (max-width: 500px) {
+  .quote {
+    width: max-content;
+  }
+}
+
+.form-label {
+  width: 100%;
+}
+
+.service {
+  margin-bottom: 0;
+}
+
+.separator {
+  display: flex;
+  flex-direction: column;
+}
+
+.rate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rate-row p {
+  margin: 8px 0;
+}
+
+.line {
+  margin: 0;
+}
+
+#note {
+  margin: 20px 0;
+  background-color: rgb(249, 249, 248);
+  box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.5);
+}

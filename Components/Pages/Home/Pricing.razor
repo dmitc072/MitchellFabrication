@@ -1,0 +1,92 @@
+@inject DataService Data
+
+<br>
+<div class="row">
+    <div class="pricing-left">
+        <p class="line-before small-font">Pricing</p> 
+        <h1 style="font-weight:800">Clear,</h1>
+        <h1 style="font-weight:300; font-style:italic; color:grey">Honest Rates.</h1>
+           <div class="separator">
+                @foreach(var rate in rates)
+                {
+                    <div class="line"></div>
+                    <div class="rate-row">
+                        <p>@rate.Key</p>
+                        <p class="price">@rate.Value</p>
+                    </div>
+                }
+                <div class="line"></div>
+           </div>
+           <p id="note">Not sure what you need? Fill out the form with your project description and we'll send back an itemized quote within 24 hours — no commitment required.</p>
+    </div>
+    <div class="pricing-right">
+        <form class="quote">
+            @foreach(var i in info)
+            {
+                <p>
+                    <label for="@i.Id" class="form-label small-font">
+                        @i.Title
+                        <input 
+                            type="@(i.Type=="" ? "text" : i.Type)" 
+                            autocomplete="@i.Id"
+                            class="form-control" id="@i.Id" 
+                            @bind="formValues[i.Key]" 
+                        />
+                    </label>
+                </p>
+            }
+           
+            <p>
+                <label for="services" class="form-label small-font service">
+                    SERVICE NEEDED
+                    <select class="form-control" id="services" @bind="selectedService">
+                        <option value="">-- Select a service --</option>
+                        @foreach(var s in Data.Services)
+                        {
+                            <option value="@s.Title">@s.Title</option>
+                        }
+                    </select>
+                </label>
+            </p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+@code {
+  
+    string selectedService = "";
+
+    record Info(string Title, string Id, string Type, string Key);
+
+    Dictionary<string,string> rates = new()
+        {
+            {"Large-Format Print (24\")", "$3-$8 / sq ft"},
+            {"Standard (11x18)", "$1-$3 / sheet"},
+            {"Laser Engraving", "$25-$150 / piece"},
+            {"3D Printing", "$20-200 / print"},
+            {"Carpentry & Woodwork", "$60-$120 / hr"},
+            {"Event Production Package", "Custom Quote"},
+            {"Government / SDVOSB Contracts", "SAM.gov Eligible"}
+
+        };
+
+    Dictionary<string, string> formValues = new()
+    {
+        { "firstName", "" },
+        { "lastName", "" },
+        { "email", "" },
+        { "phone", "" },
+        { "company", "" }
+    };
+
+    List<Info> info = new()
+    {
+        new("FIRST NAME", "given-name", "", "firstName"),
+        new("LAST NAME", "family-name", "", "lastName"),
+        new("EMAIL ADDRESS", "email", "email", "email"),
+        new("PHONE NUMBER", "tel", "tel", "phone"),
+        new("COMPANY", "organization", "", "company")
+    };
+}

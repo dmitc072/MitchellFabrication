@@ -1,0 +1,53 @@
+@inject DataService Data
+
+<div>
+    <br>
+    <p class="small-font red line-before letter-spacing" >WHAT WE DO</p>
+    <h1 style="font-weight:800"> Services & <span style="font-weight:300; font-style:italic; color:grey">Capabilities</span></h1>
+    <p class="quote"> One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish.</p>
+    <!-- Desktop: show all cards -->
+    <div class="row services-row desktop-only">
+        @foreach(var s in Data.Services)
+        {
+            <div class="center service-box">
+                <h2>@s.Title</h2>
+                <p>@s.Description</p>
+                <br>
+                <div class="row">
+                    @foreach(var button in s.Buttons)
+                    {
+                        <p class="button center small-font">@button</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Mobile: carousel -->
+    <div class="mobile-only">
+        <div class="center service-box">
+            <h2>@Data.Services[currentIndex].Title</h2>
+            <p>@Data.Services[currentIndex].Description</p>
+            <br>
+            <div class="row">
+                @foreach(var button in Data.Services[currentIndex].Buttons)
+                {
+                    <p class="button center small-font">@button</p>
+                }
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button @onclick="Prev">&#8592;</button>
+            <span>@(currentIndex + 1) / @Data.Services.Count</span>
+            <button @onclick="Next">&#8594;</button>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    int currentIndex = 0;
+
+    void Next() => currentIndex = (currentIndex + 1) % Data.Services.Count;
+    void Prev() => currentIndex = (currentIndex - 1 + Data.Services.Count) % Data.Services.Count;
+}

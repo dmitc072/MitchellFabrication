@@ -1,0 +1,32 @@
+
+@inject DataService Data
+
+<br>
+<div>
+    <p class="line-before small-font">GET IN TOUCH</p> 
+    <h1 style="font-weight:800">Let's Talk About</h1>
+    <h1 style="font-weight:300; font-style:italic; color:grey">Your Project.</h1>
+    <p class="quote">Serving Conyers and the greater Atlanta metro area. Government inquiries welcome. Available Monday through Saturday.</p>
+    <div class="row contact-row center">
+       <div class="split">
+            <p style="font-weight:700">Call or Text</p>
+            <p class="red">@Data.MyInfo["phone"]</p>
+            <p class="small-font">Mon–Sat · 8AM–7PM EST</p>
+       </div>
+       <div class="split">
+            <p style="font-weight:700">Email</p>
+            <p class="red">@Data.MyInfo["email"]</p>
+            <p class="small-font">Response within 24 hours</p>
+        </div>
+       <div class="split">
+            <p style="font-weight:700">Location</p>
+            <p class="red">@Data.MyInfo["location"]</p>
+            <p class="small-font">Greater Atlanta Metro · By Appointment</p>
+        </div>
+    </div>
+    <div class="booking">
+        <h2>Book a Free 15-Minute Consultation</h2>
+        <p style="font-weight:200; font-size:12px">Tell us your project. We'll tell you exactly what it costs, how long it takes, and whether we're the right fit. No pressure, no commitment required.</p>
+        <button>Book Consultation &#8594;</button>
+    </div>
+</div>

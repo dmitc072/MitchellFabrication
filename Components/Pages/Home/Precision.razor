@@ -1,0 +1,56 @@
+<br>
+<div class="row">
+    <div class="precision-left">
+        <p class="small-font red line-before letter-spaing" >WHY MITCHELL</p>
+        <h1 style="font-weight:800"> Precision, <span style="font-weight:300; font-style:italic; color:grey">every time.</span></h1>
+        <p class="quote"> We bring the same standards to your project that 20 years of military service demanded — on time, on spec, no excuses.</p>
+        <br>
+        @foreach(var topic in topics)
+        {
+            <ul>
+                <li class="topic">@topic.Title</li>
+                <p>@topic.Description</p>
+                <div class="line topic-gap"></div>
+            </ul>
+        }
+    </div>
+    <div class="precision-right">
+        <div class="about">
+            <p class="small-font letter-spacing">ABOUT THE OWNER</p>
+            <h1>U.S. Army Veteran.</h1>
+            <h1>Conyers built.</h1>
+            <p>Mitchell Creative & Fabrication is owned and personally operated by a 20-year U.S. Army veteran, achieving the rank of Sergeant First Class (E-7) with an Honorable Discharge. Every project receives the same precision that military service demands — because that's the only standard we know.</p>
+            <div class="about-owner">@foreach(var info in ownerInfo)
+                {
+                <div class="owner-container">
+                    <p class="info-title">@info.Title</p>
+                    <p class="small-font letter-spacing">@info.Description</p>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@code{
+    record Topic(string Title, string Description);
+    record Owner(string Title, string Description);
+
+    List<Topic> topics = new (){
+        new("One Vendor for Everything", "Print, engrave, fabricate, and build — all in one order, one invoice, one relationship. No more coordinating five different vendors for a single project."),
+        new("Military Accountability", "20 years as a U.S. Army Sergeant First Class means deadlines are absolute, specs are followed exactly, and every job is treated like a mission."),
+        new("Local & Personally Handled", "Based in Conyers, GA. Your project is handled personally — not by an anonymous production line. You'll always know who is working on your order."),
+        new("SDVOSB Government Eligible","Certified Service-Disabled Veteran-Owned Small Business via SAM.gov. Government agencies and prime contractors can fulfill set-aside requirements through us.")
+        };
+
+    List<Owner> ownerInfo = new(){
+        new("20", "YEARS ACTIVE DUTY"),
+        new("SFC", "SERGEANT FIRST CLASS"),
+        new("HON", "HONORABLE DISCHARGE"),
+        new("E-7", "RANK ACHIEVED")
+        };
+}

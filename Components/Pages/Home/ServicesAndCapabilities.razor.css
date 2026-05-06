@@ -1,0 +1,75 @@
+.services-row {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.service-box {
+  width: 300px;
+  height: 380px;
+  background-color: rgb(249, 249, 248);
+  margin: 10px;
+  padding: 25px;
+  border-color: grey;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-box .row {
+  margin-top: auto;
+  gap: 8px;
+  justify-content: center;
+}
+
+.service-box:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+}
+
+.button {
+  height: auto;
+  width: min-content;
+  background-color: white;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  white-space: nowrap;
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  #quote {
+    width: 70%;
+  }
+}
+
+.mobile-only {
+  display: none;
+}
+.desktop-only {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  .desktop-only {
+    display: none;
+  }
+
+  .service-box {
+    margin: auto;
+  }
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
