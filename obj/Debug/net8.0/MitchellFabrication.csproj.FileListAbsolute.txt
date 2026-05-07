@@ -35,3 +35,4 @@
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Home/Pricing.razor.rz.scp.css
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Home/GetInTouch.razor.rz.scp.css
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Layout/FooterPage.razor.rz.scp.css
+/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/MitchellFabrication.sourcelink.json

@@ -1,0 +1,31 @@
+@namespace MitchellFabrication.Components
+
+@if(string.IsNullOrEmpty(Separate))
+{
+    <div>
+        <br>
+        <p class="small-font red line-before letter-spacing">@Label</p>
+        <h1 style="font-weight:800">@Title <span style="font-weight:300; font-style:italic; color:grey">@Subtitle</span></h1>
+        <p class="quote">@Quote</p> 
+    </div>
+} else
+{
+   <div>
+        <br>
+        <p class="small-font red line-before letter-spacing">@Label</p> 
+        <h1 class="@Separate" style="font-weight:800">@Title</h1>
+        <h1 style="font-weight:300; font-style:italic; color:grey">@Subtitle</h1>
+         @if(!string.IsNullOrEmpty(Quote)) 
+        {
+            <p class="quote">@Quote</p> 
+        }
+    </div>   
+}
+
+@code {
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Subtitle { get; set; } = "";
+    [Parameter] public string Quote { get; set; } = "";
+    [Parameter] public string Separate {get; set; } = "";
+}
