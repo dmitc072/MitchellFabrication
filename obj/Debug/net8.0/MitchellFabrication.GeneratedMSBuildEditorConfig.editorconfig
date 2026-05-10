@@ -36,10 +36,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lL0hvbWUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/Services.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9TZXJ2aWNlcy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -87,3 +83,7 @@ build_metadata.AdditionalFiles.CssScope = b-jeqv742r1f
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Home/ServicesAndCapabilities.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lL1NlcnZpY2VzQW5kQ2FwYWJpbGl0aWVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-o8fzyh4598
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/Services.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9TZXJ2aWNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ms86ux4hz9

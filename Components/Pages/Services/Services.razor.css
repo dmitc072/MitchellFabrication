@@ -1,0 +1,15 @@
+.flex-row {
+  justify-content: center;
+}
+
+.service-header h1 {
+  margin: 0;
+}
+
+.gret {
+  color: grey;
+}
+
+.spacing {
+  margin: 10px 0;
+}

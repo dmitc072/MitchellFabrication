@@ -1,5 +1,131 @@
-<SectionHeader
-    Label="WHAT WE DO"
-    Title="Services &amp;"
-    Subtitle="Capabilities"
-    Quote="One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish." />
+@page "/services"
+@rendermode InteractiveServer
+@inject DataService Data
+
+<PageTitle>Services</PageTitle>
+<div>
+    <SectionHeader
+        Label="WHAT WE DO"
+        Title="Services &amp;"
+        Subtitle="Capabilities"
+        Quote="One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish." 
+        Separate="empty"
+    />
+    <div class="flex-row">
+        @foreach(var service in Data.Services)
+        {
+            <p @onclick="() => TypeOfService(service.Title)" style="cursor:pointer">@service.Title</p>
+        }
+    </div>
+    <div class="service-header">
+        <p class="small-font letter-spacing grey">@CurrentHeader.Label</p>
+        <h1 style="font-weight:800">@CurrentHeader.HeaderTitle</h1>
+        <h1 style="font-weight:300; font-style:italic; color:grey">@CurrentHeader.HeaderSubtitle</h1>
+        <p class="small-font red" style="text-transform:uppercase">@CurrentHeader.AboutTitle</p>
+        <p>@((MarkupString)CurrentHeader.HeaderDescription)</p>
+        <p class="small-font letter-spacing spacing">What's Included</p>
+        <div>       
+            @foreach(var product in selectionProducts){
+                <p><span style="font-weight:700">@product.Title</span> — @product.Description</p>
+                <p class="line"></p>
+            }
+        </div>
+    </div>
+</div>
+
+@code{
+    record Product (string Title, string Description);
+
+    record Header (string Title,string Label,string HeaderTitle, string HeaderSubtitle, string AboutTitle, string HeaderDescription);
+    
+    string? typeOfService; 
+
+    List<Product> selectionProducts = new ();
+
+    protected override void OnInitialized()
+    {
+        selectionProducts = printProducts;
+    }
+
+    Header CurrentHeader => headerProducts.FirstOrDefault(h => h.Title == typeOfService) ?? headerProducts[0];
+
+
+    List<Product> printProducts = new () 
+        {
+           new ("Large-Format Banners","Indoor and outdoor vinyl, grommets, pole pockets, hemmed edges"),
+           new ("Window Graphics","Cut vinyl, perforated window film, partial wraps"),
+           new ("Retail & Trade Show Displays", "Table covers, backdrops, step-and-repeat banners"),
+           new ("Menus, Flyers & Posters", "Single or double-sided, laminated or uncoated"),
+           new ("Event Programs & Marketing Collateral", "Brochures, rack cards, postcards")
+        };
+
+    List<Product> laserProducts = new () 
+        {
+            new ("Custom gifts & keepsakes","Cutting boards, photo frames, ornaments, jewelry boxes"),
+            new ("Awards & recognition ", "Plaques, trophies, engraved glass, acrylic awards"),
+            new ("Branded merchandise", "Logo items, promotional products, corporate gifts"),
+            new ("Architectural signage", "Door signs, room numbers, directional wayfinding"),
+            new ("Custom cuts & shapes", "Acrylic letters, decorative wood shapes, inlays")
+        };
+
+    List<Product> ThreeDProducts = new ()
+        {
+            new ("Rapid prototyping", "Functional prototypes, proof-of-concept models, design iterations"),
+            new ("Replacement parts", "Hard-to-find components, obsolete parts, custom hardware"),
+            new ("Consumer products", "Phone stands, organizers, home accessories, custom mounts"),
+            new ("Cosplay & props", "Wearable pieces, movie props, game accessories, display models"),
+            new ("File prep assistance", "We help optimize STL files for best print quality" )
+        };
+
+    List<Product> Carpentry = new () 
+        {
+            new ("Custom furniture", "Dining tables, desks, benches, bed frames, storage ottomans"),
+        };
+
+    List<Product> Event = new ()
+        {
+            new ("Signage suite", "Welcome signs, directional signs, table numbers, menus, programs"),
+            new ("Photo backdrops", "Printed step-and-repeat, custom fabric, branded photo walls"),
+            new ("Engraved favors & gifts", " Personalized keepsakes, corporate branded gifts"),
+            new ("Fabricated display structures", "Easels, stands, frames, custom display fixtures"),
+            new ("Branded table décor", "Centerpiece elements, name cards, specialty items")
+        };
+    List<Header> headerProducts = new ()
+        {
+            new ("Print & Signage", "Service 01", "Print &", "Signage", "Large-Format · 24\" Roll · 11×18 Standard", "Whether you need a <span style=\"font-weight:700\">10-foot event banner</span>, a set of window graphics for your storefront, or a stack of professionally printed menus — we handle it all in-house with no outsourcing and fast turnaround. Our 24\" roll printer handles large-format vinyl, canvas, and fabric, while our 11×18 printer covers your everyday marketing and print needs."),
+            new ("Laser Engraving", "Service 02", "Laser", "Engraving", "12×18 OMTech 60W CO₂ · Precision Cuts", "Our 60W CO₂ laser engraver produces <span style= \"font-weight:700\">razor-sharp engravings and precise cuts</span> on a wide range of materials. Perfect for custom gifts, branded merchandise, recognition awards, architectural signage, and decorative pieces." ),
+            new ("3D Printing", "Service 03", "3D", "Printing", "FDM · Rapid Prototyping · Custom Parts", "Turn your digital designs into <span style= \"font-weight:700\">physical objects within days.</span> Whether you need one prototype or a short run of custom parts, our 3D printing service delivers reliable results with a growing library of materials."),
+            new ("Carpentry & Woodwork", "Service 04", "Carpentry &", "Woodwork", "Custom Furniture · Built-Ins · Residential & Commercial", "From custom built-in shelving to one-of-a-kind furniture pieces, our carpentry work combines <span style=\" font-weight: 700 \">clean joinery, quality materials, and precise execution</span>. We work with homeowners, interior designers, and commercial clients."),
+            new ("Event Production", "Service 05", "Event", "Production", "Weddings · Corporate · Grand Openings · Galas", "We are the only vendor you need for your event. From <span style=\" font-weight: 700 \">printed signage suites</span> to <span style=\" font-weight: 700 \">laser-engraved</span> guest gifts, fabricated display structures to branded table décor — everything from one shop, one point of contact.")
+        };
+
+    void TypeOfService(string s){
+        typeOfService = s;
+
+        switch (typeOfService)
+        {
+            case "Print & Signage":
+                selectionProducts = printProducts;
+                break;
+            case "Laser Engraving":
+                selectionProducts = laserProducts;
+                break;
+            case "3D Printing" :
+                selectionProducts = ThreeDProducts;
+                break;
+            case "Carpentry & Woodwork":
+                selectionProducts = Carpentry;
+                break;
+            case "Event Production":
+                selectionProducts = Event;
+                break;
+            default:
+                selectionProducts = printProducts;
+                break;
+        }
+    
+    }
+  
+}
+
+
