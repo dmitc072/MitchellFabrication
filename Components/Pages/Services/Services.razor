@@ -3,41 +3,50 @@
 @inject DataService Data
 
 <PageTitle>Services</PageTitle>
-<div>
-    <SectionHeader
-        Label="WHAT WE DO"
-        Title="Services &amp;"
-        Subtitle="Capabilities"
-        Quote="One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish." 
-        Separate="empty"
-    />
-    <div class="flex-row">
-        @foreach(var service in Data.Services)
-        {
-            <p @onclick="() => TypeOfService(service.Title)" style="cursor:pointer">@service.Title</p>
-        }
-    </div>
-    <div class="service-header">
-        <p class="small-font letter-spacing grey">@CurrentHeader.Label</p>
-        <h1 style="font-weight:800">@CurrentHeader.HeaderTitle</h1>
-        <h1 style="font-weight:300; font-style:italic; color:grey">@CurrentHeader.HeaderSubtitle</h1>
-        <p class="small-font red" style="text-transform:uppercase">@CurrentHeader.AboutTitle</p>
-        <p>@((MarkupString)CurrentHeader.HeaderDescription)</p>
-        <p class="small-font letter-spacing spacing">What's Included</p>
-        <div>       
-            @foreach(var product in selectionProducts){
-                <p><span style="font-weight:700">@product.Title</span> — @product.Description</p>
-                <p class="line"></p>
+<div class="service-page">
+    <div class="left-column"
+        <SectionHeader
+            Label="WHAT WE DO"
+            Title="Services &amp;"
+            Subtitle="Capabilities"
+            Quote="One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish." 
+            Separate="empty"
+        />
+        <div class="flex-row">
+            @foreach(var service in Data.Services)
+            {
+                <p class="@(typeOfService ==service.Title ? "active-service" : "")"
+                    @onclick="() => TypeOfService(service.Title)" style="cursor:pointer">@service.Title</p>
             }
         </div>
+        <div class="service-header">
+            <p class="small-font letter-spacing grey">@CurrentHeader.Label</p>
+            <h1 style="font-weight:800">@CurrentHeader.HeaderTitle</h1>
+            <h1 style="font-weight:300; font-style:italic; color:grey">@CurrentHeader.HeaderSubtitle</h1>
+            <p class="small-font red" style="text-transform:uppercase">@CurrentHeader.AboutTitle</p>
+            <p>@((MarkupString)CurrentHeader.HeaderDescription)</p>
+            <p class="small-font letter-spacing spacing">What's Included</p>
+            <div>       
+                @foreach(var product in selectionProducts){
+                    <p><span style="font-weight:700">@product.Title</span> — @product.Description</p>
+                    <p class="line"></p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="right-column">
+        @if(typeOfService == "Laser Engraving")          { <LaserEngravingCard /> }
+        else if(typeOfService == "3D Printing")           { <ThreeDPrintingCard /> }
+        else if(typeOfService == "Carpentry & Woodwork")  { <CarpentryCard /> }
+        else if(typeOfService == "Event Production")      { <EventProductionCard /> }
+        else { <PrintSignageCard /> }
     </div>
 </div>
 
 @code{
     record Product (string Title, string Description);
+    record Header (string Title, string Label, string HeaderTitle, string HeaderSubtitle, string AboutTitle, string HeaderDescription);
 
-    record Header (string Title,string Label,string HeaderTitle, string HeaderSubtitle, string AboutTitle, string HeaderDescription);
-    
     string? typeOfService; 
 
     List<Product> selectionProducts = new ();
@@ -45,6 +54,7 @@
     protected override void OnInitialized()
     {
         selectionProducts = printProducts;
+        typeOfService = "Print & Signage";
     }
 
     Header CurrentHeader => headerProducts.FirstOrDefault(h => h.Title == typeOfService) ?? headerProducts[0];

@@ -135,6 +135,69 @@ h1:focus {
   width: 50vw;
 }
 
+.info-card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  width: 400px;
+}
+
+.info-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.popular-item {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.popular-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.popular-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.popular-desc {
+  font-size: 11px;
+  color: #888;
+  font-family: monospace;
+  margin: 0;
+}
+
+.materials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.material-pill {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #ccc;
+}
+
 @media (max-width: 576px) {
   .quote {
     width: 80vw;

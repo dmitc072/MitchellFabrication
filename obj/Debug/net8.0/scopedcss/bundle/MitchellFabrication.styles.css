@@ -538,10 +538,43 @@ ul[b-j7me8c2ik3] {
   margin: 0;
 }
 
-.gret[b-ms86ux4hz9] {
+.grey[b-ms86ux4hz9] {
   color: grey;
 }
 
 .spacing[b-ms86ux4hz9] {
   margin: 10px 0;
+}
+
+.service-page[b-ms86ux4hz9] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.left-column[b-ms86ux4hz9] {
+  flex: 1;
+}
+
+.right-column[b-ms86ux4hz9] {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.flex-row[b-ms86ux4hz9] {
+  background-color: black;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.flex-row p[b-ms86ux4hz9] {
+  text-align: center;
+  margin: 10px 15px;
+}
+
+.active-service[b-ms86ux4hz9] {
+  font-weight: 700;
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MitchellFabrication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28782fd679225c1085f043003ffedf91d3e989b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78e5c621cf2e7127f4ac28da1bcf102d6d291558")]
 [assembly: System.Reflection.AssemblyProductAttribute("MitchellFabrication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MitchellFabrication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
