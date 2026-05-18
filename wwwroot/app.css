@@ -77,6 +77,10 @@ h1:focus {
   margin: auto auto;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .background {
   background-color: white;
 }
@@ -198,8 +202,59 @@ h1:focus {
   color: #ccc;
 }
 
+.field-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  margin: 15px 0;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  border-radius: 7px;
+}
+
+select {
+  border-radius: 7px;
+}
+
+textarea {
+  border-radius: 7px;
+}
+
+.quote-card {
+  width: 500px;
+  height: auto;
+  margin: 30px auto;
+  background-color: rgb(249, 249, 248);
+  box-shadow: 5px 5px 10px black;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.btn-active {
+  font-weight: 700;
+  border-bottom: 2px solid white;
+  background-color: rgba(200, 55, 55, 1);
+  color: white;
+}
+
 @media (max-width: 576px) {
   .quote {
     width: 80vw;
   }
+
+  .quote-card {
+    width: 90%;
+  }
+}
+
+.label-space {
+  margin: 0 0 0 10px;
 }

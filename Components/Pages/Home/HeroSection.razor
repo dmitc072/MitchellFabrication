@@ -60,10 +60,12 @@
  string selectedService = "";
 
  void SelectService(string s){
+    Data.SelectedService = s;
     selectedService = s;
  }
 
  void StartButton(){
-    Console.WriteLine(selectedService);
- }
+    Console.WriteLine(Data.SelectedService);
+    Nav.NavigateTo("/quote"); 
+}
 }

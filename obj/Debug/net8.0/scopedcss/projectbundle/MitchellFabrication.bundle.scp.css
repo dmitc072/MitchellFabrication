@@ -529,6 +529,27 @@ ul[b-j7me8c2ik3] {
   gap: 20px;
   margin-top: 10px;
 }
+/* _content/MitchellFabrication/Components/Pages/Quotes/PrintQuote.razor.rz.scp.css */
+textarea[b-rnhw1yz0zn] {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+  padding: 8px;
+}
+
+#regular-print[b-rnhw1yz0zn] {
+  border-radius: 10px 0 0 10px;
+  width: 160px;
+  height: 50px;
+  line-height: 1.2;
+}
+
+#large-print[b-rnhw1yz0zn] {
+  border-radius: 0 10px 10px 0;
+  width: 160px;
+  height: 50px;
+  line-height: 1.2;
+}
 /* _content/MitchellFabrication/Components/Pages/Services/Services.razor.rz.scp.css */
 .flex-row[b-ms86ux4hz9] {
   justify-content: center;

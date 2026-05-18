@@ -37,3 +37,4 @@
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Layout/FooterPage.razor.rz.scp.css
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/MitchellFabrication.sourcelink.json
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Services/Services.razor.rz.scp.css
+/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/PrintQuote.razor.rz.scp.css

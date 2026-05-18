@@ -1,0 +1,23 @@
+@page "/quote"
+@rendermode InteractiveServer
+@inject DataService Data
+
+<div >
+    <div class="text-center">
+        <h1 style="font-size:40px">@Data.SelectedService</h1>
+        <h2 style="font-size:30px">QUOTE</h2>
+    </div>
+    @Selection
+</div>
+
+@code {
+
+    RenderFragment Selection => Data.SelectedService switch
+    {
+        "Print & Signage"      => @<PrintQuote />,
+        "Laser Engraving"      => @<PrintQuote/>,
+        "Carpentry & Woodwork" => @<PrintQuote/>,
+        _                      => @<PrintQuote/>
+    };
+
+}

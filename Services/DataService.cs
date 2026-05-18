@@ -1,7 +1,9 @@
 public class DataService
 {
+    public string SelectedService {get; set;}
+
     public string Company{get;}= "Mitchell & Fabrication";
-    
+
     public record Service(string Title, string Description, List<string> Buttons);
 
     public List<Service> Services { get; } = new()
