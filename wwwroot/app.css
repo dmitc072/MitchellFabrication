@@ -1,8 +1,13 @@
 html,
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
+footer {
+  margin-top: auto;
+}
 a,
 .btn-link {
   color: #006bb7;
@@ -59,12 +64,6 @@ h1:focus {
 
 .darker-border-checkbox.form-check-input {
   border-color: #929292;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
 }
 
 .column {
@@ -216,6 +215,12 @@ h1:focus {
   justify-content: center;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 input {
   border-radius: 7px;
 }
@@ -240,7 +245,8 @@ textarea {
 
 .btn-active {
   font-weight: 700;
-  border-bottom: 2px solid white;
+  border: 2px solid black;
+  box-shadow: 5px 5px 10px black;
   background-color: rgba(200, 55, 55, 1);
   color: white;
 }

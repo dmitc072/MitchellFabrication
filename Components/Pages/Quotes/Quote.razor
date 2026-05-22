@@ -3,21 +3,26 @@
 @inject DataService Data
 
 <div >
+    <form class="quote-card">
     <div class="text-center">
-        <h1 style="font-size:40px">@Data.SelectedService</h1>
-        <h2 style="font-size:30px">QUOTE</h2>
+        <h1 class="title">@Data.SelectedService</h1>
+        <h2 class="subtitle">QUOTE</h2>
     </div>
     @Selection
+    </form>
 </div>
 
 @code {
 
-    RenderFragment Selection => Data.SelectedService switch
+  RenderFragment Selection => Data.SelectedService switch
     {
         "Print & Signage"      => @<PrintQuote />,
-        "Laser Engraving"      => @<PrintQuote/>,
-        "Carpentry & Woodwork" => @<PrintQuote/>,
-        _                      => @<PrintQuote/>
+        "Laser Engraving"      => @<LaserQuote />,
+        "3D Printing"          => @<ThreeDQuote />,
+        "Carpentry & Woodwork" => @<CarpentryQuote />,
+        "Event Production"     => @<EventQuote />,
+        _                      => @<PrintQuote />
     };
+
 
 }
