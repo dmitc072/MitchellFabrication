@@ -532,6 +532,20 @@ ul[b-j7me8c2ik3] {
   gap: 20px;
   margin-top: 10px;
 }
+/* _content/MitchellFabrication/Components/Pages/Quotes/EventQuote.razor.rz.scp.css */
+textarea[b-er5yq75lal] {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+label[b-er5yq75lal] {
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+}
 /* _content/MitchellFabrication/Components/Pages/Quotes/LaserQuote.razor.rz.scp.css */
 .file[b-92hzywq7kr] {
   justify-content: space-between;
@@ -654,6 +668,90 @@ textarea[b-rnhw1yz0zn] {
 
   .subtitle[b-hqwt1ll1dr] {
     font-size: 1.8rem;
+  }
+}
+/* _content/MitchellFabrication/Components/Pages/Quotes/ThreeDQuote.razor.rz.scp.css */
+.file[b-cevfgcxwpt] {
+  justify-content: space-between;
+}
+
+.file[b-cevfgcxwpt]  button:hover {
+  background-color: rgba(200, 55, 55, 1);
+  color: white;
+}
+
+.selection[b-cevfgcxwpt]  input[type="file"] {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.center-selection[b-cevfgcxwpt] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+textarea[b-cevfgcxwpt] {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+  padding: 8px;
+}
+
+.dimension-row[b-cevfgcxwpt] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1;
+  margin-bottom: 10px;
+}
+
+.dimension-space[b-cevfgcxwpt] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.center-button[b-cevfgcxwpt] {
+  display: block;
+  margin: 10px auto;
+}
+
+.file-row[b-cevfgcxwpt] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+button[b-cevfgcxwpt] {
+  border-radius: 10px;
+}
+
+input[type="file"][b-cevfgcxwpt] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+}
+
+@media (max-width: 440px) {
+  .file-row[b-cevfgcxwpt] {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .file-row p[b-cevfgcxwpt] {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .dimension-space[b-cevfgcxwpt] {
+    flex-direction: column;
   }
 }
 /* _content/MitchellFabrication/Components/Pages/Services/Services.razor.rz.scp.css */

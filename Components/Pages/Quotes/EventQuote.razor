@@ -1,0 +1,124 @@
+@inject IJSRuntime JS
+<div>
+    @foreach(var field in EventInfo)
+    {
+        <label class='@((field is Info fi && fi.Type == "textarea") ? "field-column" : "flex-row") field-row'>
+            <span>@field.Label</span>
+            @if(field is DropdownField dd)
+            {
+                <select @bind="formValues[dd.Key]">
+                    <option value="">-- Select --</option>
+                    @foreach(var option in dd.Options)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+            }
+            else if(field is Info i && i.Type == "textarea")
+            {
+                <textarea id="@i.Key"
+                          maxlength="500"
+                          @bind="formValues[i.Key]"
+                          @bind:event="oninput">
+                </textarea>
+                <p class="small-font">@formValues[i.Key].Length / 500</p>
+            }
+            else if(field is Info i2 && i2.Key == "phone")
+            {
+                <input id="@i2.Key"
+                       class="label-space"
+                       type="text"
+                       inputmode="numeric"
+                       autocomplete="tel"
+                       maxlength="12"
+                       value="@formValues[i2.Key]"
+                       @oninput="FormatPhone"
+                       @onblur="ValidatePhone" />
+                @if(phoneError)
+                {
+                    <p class="small-font red">Phone number must be 10 digits</p>
+                }
+            }
+            else if(field is Info i3)
+            {
+                <input id="@i3.Key"
+                       class="label-space"
+                       type="@i3.Type"
+                       autocomplete="@i3.AutoComplete"
+                       @bind="formValues[i3.Key]" />
+            }
+        </label>
+    }
+    @if(submitted && !IsFormValid())
+    {
+        <p class="small-font red">Please fill out all fields before submitting.</p>
+    }
+    <button type="button" @onclick="Submit">SUBMIT</button>
+</div>
+
+@code{
+    Dictionary<string, string> formValues = new()
+    {
+        ["firstName"]   = "",
+        ["lastName"]    = "",
+        ["phone"]       = "",
+        ["email"]       = "",
+        ["company"]     = "",
+        ["eventName"]   = "",
+        ["eventDate"]   = "",
+        ["eventType"]   = "",
+        ["venue"]       = "",
+        ["description"] = "",
+    };
+
+    
+
+    
+    bool phoneError = false;
+    bool submitted = false;
+
+    async Task FormatPhone(ChangeEventArgs e)
+    {
+        var digits = new string(e.Value?.ToString().Where(char.IsDigit).ToArray());
+        if (digits.Length > 10) digits = digits[..10];
+
+        if (digits.Length >= 7)
+            formValues["phone"] = $"{digits[..3]}-{digits[3..6]}-{digits[6..]}";
+        else if (digits.Length >= 4)
+            formValues["phone"] = $"{digits[..3]}-{digits[3..]}";
+        else
+            formValues["phone"] = digits;
+
+        await JS.InvokeVoidAsync("eval", $"document.getElementById('phone').value='{formValues["phone"]}'");
+    }
+
+    void ValidatePhone()
+    {
+        var digits = new string(formValues["phone"].Where(char.IsDigit).ToArray());
+        phoneError = digits.Length > 0 && digits.Length < 10;
+    }
+
+    bool IsFormValid() =>
+        formValues.All(kv => !string.IsNullOrWhiteSpace(kv.Value)) &&
+        new string(formValues["phone"].Where(char.IsDigit).ToArray()).Length == 10;
+
+    void Submit()
+    {
+        submitted = true;
+        if (!IsFormValid()) return;
+        // handle submission here
+    }
+
+    List<IQuoteField> EventInfo = new (){
+        new Info("FIRST NAME",       "firstName",   "given-name",   "text"),
+        new Info("LAST NAME",        "lastName",    "family-name",  "text"),
+        new Info("PHONE NUMBER",     "phone",       "tel",          "text"),
+        new Info("EMAIL ADDRESS",    "email",       "email",        "email"),
+        new Info("COMPANY",          "company",     "organization", "text"),
+        new Info("EVENT NAME",       "eventName",   "off",          "text"),
+        new Info("EVENT DATE",       "eventDate",   "off",          "date"),
+        new DropdownField("EVENT TYPE", "eventType", new(){ "Corporate", "Wedding", "Festival", "Trade Show", "Political", "Community", "Other" }),
+        new Info("VENUE OR LOCATION","venue",       "off",          "text"),
+        new Info("DESCRIPTION",       "description", "description", "textarea"),
+    };
+}

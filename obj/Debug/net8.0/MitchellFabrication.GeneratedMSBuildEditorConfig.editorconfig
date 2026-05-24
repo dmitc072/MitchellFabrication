@@ -104,6 +104,10 @@ build_metadata.AdditionalFiles.CssScope = b-jeqv742r1f
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lL1NlcnZpY2VzQW5kQ2FwYWJpbGl0aWVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-o8fzyh4598
 
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/EventQuote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvRXZlbnRRdW90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-er5yq75lal
+
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/LaserQuote.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvTGFzZXJRdW90ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-92hzywq7kr

@@ -40,3 +40,5 @@
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/PrintQuote.razor.rz.scp.css
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/LaserQuote.razor.rz.scp.css
 /Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/Quote.razor.rz.scp.css
+/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/ThreeDQuote.razor.rz.scp.css
+/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/obj/Debug/net8.0/scopedcss/Components/Pages/Quotes/EventQuote.razor.rz.scp.css
