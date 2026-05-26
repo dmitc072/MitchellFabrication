@@ -1,0 +1,88 @@
+/* Shared styles for all quote components */
+
+.field-row input,
+.field-row select {
+  flex: 1;
+  min-width: 0;
+}
+
+.field-row .wrapper {
+  flex: 1;
+  min-width: 0;
+}
+.quote-label {
+  display: flex;
+  margin: 15px 0;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.quote-label input,
+.quote-label select {
+  flex: 1;
+  min-width: 0;
+  width: 50%;
+  max-width: 50%;
+  margin-left: 10px;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  flex-direction: column;
+}
+
+.wrapper p {
+  margin-bottom: 0;
+}
+
+.wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quote-label span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.quote-label textarea {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.quote-field-column {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.quote-file-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.quote-file-row button:hover {
+  background-color: rgba(200, 55, 55, 1);
+  color: white;
+}
+
+@media (max-width: 440px) {
+  .quote-file-row {
+    flex-direction: column;
+  }
+
+  .quote-label input,
+  .quote-label select {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}

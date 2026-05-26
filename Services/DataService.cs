@@ -1,3 +1,5 @@
+namespace MitchellFabrication.Services;
+
 public class DataService
 {
     public string SelectedService {get; set;}
@@ -29,6 +31,7 @@ public class DataService
         {"phone","410-877-7260"},
         {"email", "duane.a.mitchell@outlook.com"},
         {"location", "Conyers, GA"}
-
     };
+
+
 }

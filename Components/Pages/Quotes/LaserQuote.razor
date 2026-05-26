@@ -11,7 +11,7 @@
     @if (fileNames.Count > 0)
     {
         <p style="font-weight:600">Selected:</p>
-        @foreach(var file in  uploadedFiles)
+        @foreach(var file in uploadedFiles)
         {
             <div class="file-row file">
                 <p>@Truncate(file.Name)</p>
@@ -20,26 +20,24 @@
         }
         <p>@((20_000_000 - size) / 1024)KB remaining</p>
     }
-    <button 
-        @onclick="NeedDimension"
-        type="button"
-        class="center-button"
-        >ADD DIMENISION</button>
+
+    <button @onclick="NeedDimension" type="button" class="center-button">ADD DIMENSION</button>
     <div class="dimension-space">
-    @if(needDimension)
-    {
-        @foreach(var key in Dimension.Keys)
+        @if(needDimension)
         {
-            <label class="dimension-row">@key.ToUpper()
-                <input @bind="Dimension[key]" />
-                @if(IsLarge(Dimension["width"], Dimension["height"]))
-                {
-                    <p class="small-font red">Max size is @maxWidth " X @maxHeight " </p>
-                }
-            </label>
+            @foreach(var key in Dimension.Keys)
+            {
+                <label class="dimension-row">@key.ToUpper()
+                    <input @bind="Dimension[key]" />
+                    @if(IsLarge(Dimension["width"], Dimension["height"]))
+                    {
+                        <p class="small-font red">Max size is @maxWidth " X @maxHeight "</p>
+                    }
+                </label>
+            }
         }
-    }
     </div>
+
     <p>DESCRIPTION</p>
     <textarea maxlength="500" @bind="description" @bind:event="oninput"></textarea>
     <p class="small-font">@description.Length / 500</p>
@@ -47,11 +45,10 @@
 
 @code {
     long size = 0;
-    int maxWidth= 14;
-    int maxHeight= 24;
+    int maxWidth = 14;
+    int maxHeight = 24;
     bool isMaxCapacity = false;
     string description = "";
-
     bool needDimension = false;
 
     string Truncate(string name) => name.Length > 30 ? name[..30] + "..." : name;
@@ -87,22 +84,18 @@
     List<string> fileNames = new();
     List<IBrowserFile> uploadedFiles = new();
 
-    Dictionary<string,string> Dimension = new()
-        {
-            ["width"] = "",
-            ["height"] = ""
-        };
+    Dictionary<string, string> Dimension = new()
+    {
+        ["width"]  = "",
+        ["height"] = ""
+    };
 
-    void NeedDimension (){
-        needDimension = !needDimension;
-    }
+    void NeedDimension() => needDimension = !needDimension;
 
-    bool IsLarge(string w, string h){
+    bool IsLarge(string w, string h)
+    {
         double.TryParse(w, out double width);
         double.TryParse(h, out double height);
-        double shorter = Math.Min(width,height);
-        double longer = Math.Max(width,height);
-        return longer > maxHeight || shorter > maxWidth;  
+        return Math.Max(width, height) > maxHeight || Math.Min(width, height) > maxWidth;
     }
-   
 }

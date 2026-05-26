@@ -1,20 +1,122 @@
 @page "/quote"
 @rendermode InteractiveServer
 @inject DataService Data
+@inject PersonalInfo personal
+@inject LocationService Location
 
-<div >
+
+<div>
     <form class="quote-card">
-    <div class="text-center">
-        <h1 class="title">@Data.SelectedService</h1>
-        <h2 class="subtitle">QUOTE</h2>
-    </div>
-    @Selection
+        <div class="text-center">
+            <h1 class="title">@Data.SelectedService</h1>
+            <h2 class="subtitle">QUOTE</h2>
+        </div>
+
+        @foreach(var field in personal.Fields)
+        {
+            <label class="flex-row field-row">
+                <span>@field.Label</span>
+                @if(field is Info i && i.Key == "phone")
+                {
+                    <div class="wrapper">
+                    <input @key="phoneKey"
+                           type="text"
+                           inputmode="numeric"
+                           maxlength="12"
+                           value="@personal.FormValues[i.Key]"
+                           @oninput="FormatPhone"
+                           @onblur="ValidatePhone" />
+                    @if(phoneError)
+                    {
+                        <p class="small-font red">Phone number must be 10 digits</p>
+                    }
+                    </div>
+                }
+                else if(field is Info i2 && i2.Key == "email")
+                {
+                    <div class="wrapper">
+                        <input type="@i2.Type"
+                               autocomplete="@i2.AutoComplete"
+                               @bind="personal.FormValues[i2.Key]"
+                               @bind:after="ValidateEmail" />
+                        @if(emailError)
+                        {
+                            <p class="small-font red">Not a valid email</p>
+                        }
+                    </div>
+                }
+                else if(field is Info i3 && i3.Key == "state")
+                {
+                    <select @bind='personal.FormValues["state"]' @bind:after="LoadCities">
+                        <option value="">-- Select State --</option>
+                        @foreach(var state in Location.States)
+                        {
+                            <option value="@state.Iso2">@state.Name</option>
+                        }
+                    </select>
+                }
+                else if(field is Info i3b && i3b.Key == "city")
+                {
+                    @if(Location.CitiesAvailable)
+                    {
+                        <select @bind='personal.FormValues["city"]'>
+                            <option value="">-- Select City --</option>
+                            @foreach(var city in Location.Cities)
+                            {
+                                <option value="@city.Name">@city.Name</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        <input type="text" autocomplete="address-level2"
+                               @bind='personal.FormValues["city"]' />
+                    }
+                }
+
+                else if(field is Info i3c)
+                {
+                    <input type="@i3c.Type" autocomplete="@i3c.AutoComplete"
+                           @bind="personal.FormValues[i3c.Key]" />
+                }
+            </label>
+        }
+
+        @Selection
     </form>
 </div>
 
 @code {
+    bool phoneError = false;
+    bool emailError = false;
 
-  RenderFragment Selection => Data.SelectedService switch
+   
+    int phoneKey = 0;
+
+    async Task LoadCities()
+    {
+        await Location.LoadCities();
+        StateHasChanged();
+    }
+
+    void FormatPhone(ChangeEventArgs e)
+    {
+        var raw = e.Value?.ToString() ?? "";
+        var hasLetters = raw.Any(char.IsLetter);
+        personal.FormValues["phone"] = FormHelper.FormatPhone(raw);
+        if (hasLetters) phoneKey++;
+    }
+
+    void ValidatePhone()
+    {
+        phoneError = personal.FormValues["phone"].Length > 0 && !FormHelper.IsPhoneValid(personal.FormValues["phone"]);
+    }
+
+    void ValidateEmail()
+    {
+        emailError = personal.FormValues["email"].Length > 0 && !FormHelper.IsEmailValid(personal.FormValues["email"]);
+    }
+    RenderFragment Selection => Data.SelectedService switch
     {
         "Print & Signage"      => @<PrintQuote />,
         "Laser Engraving"      => @<LaserQuote />,
@@ -23,6 +125,4 @@
         "Event Production"     => @<EventQuote />,
         _                      => @<PrintQuote />
     };
-
-
 }

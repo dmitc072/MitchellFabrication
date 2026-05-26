@@ -1,71 +1,67 @@
-    <div class="flex-center">
-        <button type="button" 
-                id="regular-print" 
-                class='@(selectedType == "REGULAR TYPE" ? "btn-active" : "")'
-                @onclick='()=>Selection("REGULAR TYPE")'> REGULAR PRINT </button>
-        <button type= "button" 
-                id="large-print" 
-                class='@(selectedType == "LARGE TYPE" ? "btn-active" : "")'
-                @onclick='()=>Selection("LARGE TYPE")'> LARGE PRINT </button>
-    </div>
-    <div>
-        @if(selectedType == "LARGE TYPE")
+<div class="flex-center">
+    <button type="button"
+            id="regular-print"
+            class='@(selectedType == "REGULAR TYPE" ? "btn-active" : "")'
+            @onclick='()=>Selection("REGULAR TYPE")'> REGULAR PRINT </button>
+    <button type="button"
+            id="large-print"
+            class='@(selectedType == "LARGE TYPE" ? "btn-active" : "")'
+            @onclick='()=>Selection("LARGE TYPE")'> LARGE PRINT </button>
+</div>
+<div>
+    @if(selectedType == "LARGE TYPE")
+    {
+        @foreach(var num in numbers)
         {
-            @foreach(var num in numbers)
-            {
-            <div class="flex-row field-row"> 
+            <div class="flex-row field-row">
                 <label>@num.Label
-                    <input id="@num.Key" 
-                        type="number" 
-                        @bind="formValues[num.Key]" />  
+                    <input id="@num.Key" type="number" @bind="formValues[num.Key]" />
                 </label>
             </div>
             @if(sizeCheck(formValues["width"], formValues["height"]))
             {
                 <p class="small-font red">Only one dimension can exceed 24 inches</p>
             }
-            }
-        }
-    </div>
-    @foreach(var field in fields)
-    {
-        bool isBusinessCard = formValues["regularType"] == "BUSINESS CARD";
-        bool bannerInLarge  = formValues["largeType"] == "BANNER";
-        bool isCard = formValues["regularType"] is  ("GATE-FOLD CARD" or "TRI-FOLD CARD");
-        bool hide = (field.Key == "material" && bannerInLarge) ||
-                    (isBusinessCard && (field.Key == "material" || field.Key == "size")) ||
-                    (isCard && (field.Key == "material" || field.Key == "size"));
-
-        @if(!hide)   
-        {
-            <div class="@(field is TextareaField ? "field-column" : "flex-row field-row")">
-                <label>@field.Label
-                    @if(field is DropdownField dd)
-                    {
-                        <select id="@dd.Key" class="label-space" @bind="formValues[dd.Key]">
-                            <option value="">-- Select --</option>
-                            @foreach(var option in dd.Options)
-                            {
-                                <option value="@option">@option</option>
-                            }
-                        </select>
-                    }
-                    else if(field is TextareaField)
-                    {
-                        <textarea id="@field.Key" @bind="formValues[field.Key]"></textarea>
-                    }
-                    else
-                    {
-                        <input id="@field.Key" type="text" @bind="formValues[field.Key]" />
-                    }
-                </label>
-            </div>
         }
     }
+</div>
+@foreach(var field in fields)
+{
+    bool isBusinessCard = formValues["regularType"] == "BUSINESS CARD";
+    bool bannerInLarge  = formValues["largeType"] == "BANNER";
+    bool isCard = formValues["regularType"] is ("GATE-FOLD CARD" or "TRI-FOLD CARD");
+    bool hide = (field.Key == "material" && bannerInLarge) ||
+                (isBusinessCard && (field.Key == "material" || field.Key == "size")) ||
+                (isCard && (field.Key == "material" || field.Key == "size"));
 
+    @if(!hide)
+    {
+        <div class="@(field is TextareaField ? "field-column" : "flex-row field-row")">
+            <label>@field.Label
+                @if(field is DropdownField dd)
+                {
+                    <select id="@dd.Key" class="label-space" @bind="formValues[dd.Key]">
+                        <option value="">-- Select --</option>
+                        @foreach(var option in dd.Options)
+                        {
+                            <option value="@option">@option</option>
+                        }
+                    </select>
+                }
+                else if(field is TextareaField)
+                {
+                    <textarea id="@field.Key" @bind="formValues[field.Key]"></textarea>
+                }
+                else
+                {
+                    <input id="@field.Key" type="text" @bind="formValues[field.Key]" />
+                }
+            </label>
+        </div>
+    }
+}
 
 @code {
-
     string selectedType = "";
 
     Dictionary<string, string> formValues = new()
@@ -77,47 +73,45 @@
         ["largeType"]   = "",
         ["size"]        = "",
         ["description"] = "",
-
     };
 
     List<IQuoteField> fields = new();
 
-    void Selection(string type){
+    void Selection(string type)
+    {
         if(type is "REGULAR TYPE")
         {
-            fields = new ()
+            fields = new()
             {
                 new DropdownField("REGULAR TYPE", "regularType", new() { "BUSINESS CARD", "GATE-FOLD CARD", "TRI-FOLD CARD", "SIGN", "PHOTO" }),
                 new DropdownField("MATERIAL",     "material",    new() { "PLAIN", "CARD STOCK", "GLOSSY", "MATTE" }),
                 new DropdownField("SIZE",         "size",        new() { "8x10", "8.5x11", "11x13", "13x19", "OTHER" }),
                 new TextareaField("DESCRIPTION",  "description"),
-
             };
             selectedType = "REGULAR TYPE";
-        } 
+        }
         else if(type is "LARGE TYPE")
         {
-             fields = new ()
+            fields = new()
             {
-                new DropdownField("LARGE TYPE",   "largeType",   new() { "BANNER", "SIGN", "PHOTO" }),
-                new DropdownField("MATERIAL",     "material",    new() { "GLOSSY", "MATTE" }),    
-                new TextareaField("DESCRIPTION",  "description"),
-      
+                new DropdownField("LARGE TYPE",  "largeType",  new() { "BANNER", "SIGN", "PHOTO" }),
+                new DropdownField("MATERIAL",    "material",   new() { "GLOSSY", "MATTE" }),
+                new TextareaField("DESCRIPTION", "description"),
             };
             selectedType = "LARGE TYPE";
         }
     }
 
-    List<IQuoteField> numbers = new (){
-                new NumberField  ("WIDTH",        "width"),
-                new NumberField  ("HEIGHT",       "height"), 
-        };
+    List<IQuoteField> numbers = new()
+    {
+        new NumberField("WIDTH",  "width"),
+        new NumberField("HEIGHT", "height"),
+    };
 
     bool sizeCheck(string w, string h)
     {
         if(!double.TryParse(w, out double width) || !double.TryParse(h, out double height))
             return false;
-
         return width > 24 && height > 24;
     }
 }

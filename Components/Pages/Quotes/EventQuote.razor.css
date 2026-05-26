@@ -6,8 +6,12 @@ textarea {
   box-sizing: border-box;
 }
 
-label {
-  display: flex;
-  margin: 10px 0;
-  width: 100%;
+@media (max-width: 530px) {
+  .qoute-field {
+    font-size: 8px;
+  }
+
+  input {
+    height: 30px;
+  }
 }

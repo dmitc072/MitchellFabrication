@@ -541,10 +541,14 @@ textarea[b-er5yq75lal] {
   box-sizing: border-box;
 }
 
-label[b-er5yq75lal] {
-  display: flex;
-  margin: 10px 0;
-  width: 100%;
+@media (max-width: 530px) {
+  .qoute-field[b-er5yq75lal] {
+    font-size: 8px;
+  }
+
+  input[b-er5yq75lal] {
+    height: 30px;
+  }
 }
 /* _content/MitchellFabrication/Components/Pages/Quotes/LaserQuote.razor.rz.scp.css */
 .file[b-92hzywq7kr] {
@@ -641,14 +645,14 @@ textarea[b-rnhw1yz0zn] {
 #regular-print[b-rnhw1yz0zn] {
   border-radius: 10px 0 0 10px;
   width: 160px;
-  height: 50px;
+  height: 35px;
   line-height: 1.2;
 }
 
 #large-print[b-rnhw1yz0zn] {
   border-radius: 0 10px 10px 0;
   width: 160px;
-  height: 50px;
+  height: 35px;
   line-height: 1.2;
 }
 /* _content/MitchellFabrication/Components/Pages/Quotes/Quote.razor.rz.scp.css */
@@ -659,6 +663,26 @@ textarea[b-rnhw1yz0zn] {
 
 .subtitle[b-hqwt1ll1dr] {
   font-size: 30px;
+}
+
+label[b-hqwt1ll1dr] {
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+span[b-hqwt1ll1dr] {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 530px) {
+  span[b-hqwt1ll1dr] {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 }
 
 @media (max-width: 440px) {
@@ -701,11 +725,34 @@ textarea[b-cevfgcxwpt] {
   padding: 8px;
 }
 
+label[b-cevfgcxwpt] {
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+label input[b-cevfgcxwpt],
+label select[b-cevfgcxwpt] {
+  flex: 1;
+  min-width: 0;
+  width: 60%;
+  max-width: 60%;
+  margin-left: 10px;
+  box-sizing: border-box;
+}
+
+span[b-cevfgcxwpt] {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .dimension-row[b-cevfgcxwpt] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1;
+  gap: 1rem;
   margin-bottom: 10px;
 }
 

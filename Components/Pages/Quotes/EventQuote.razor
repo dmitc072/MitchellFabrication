@@ -1,5 +1,7 @@
-@inject IJSRuntime JS
-<div>
+@inject PersonalInfo personalInfo
+@inject NavigationManager Nav
+
+<div class="quote-field">
     @foreach(var field in EventInfo)
     {
         <label class='@((field is Info fi && fi.Type == "textarea") ? "field-column" : "flex-row") field-row'>
@@ -23,29 +25,24 @@
                 </textarea>
                 <p class="small-font">@formValues[i.Key].Length / 500</p>
             }
-            else if(field is Info i2 && i2.Key == "phone")
-            {
-                <input id="@i2.Key"
-                       class="label-space"
-                       type="text"
-                       inputmode="numeric"
-                       autocomplete="tel"
-                       maxlength="12"
-                       value="@formValues[i2.Key]"
-                       @oninput="FormatPhone"
-                       @onblur="ValidatePhone" />
-                @if(phoneError)
-                {
-                    <p class="small-font red">Phone number must be 10 digits</p>
-                }
-            }
-            else if(field is Info i3)
+            else if(field is Info i3 && i3.Type == "date")
             {
                 <input id="@i3.Key"
                        class="label-space"
-                       type="@i3.Type"
+                       type="date"
+                       min='@DateTime.Today.ToString("yyyy-MM-dd")'
+                       value="@formValues[i3.Key]"
                        autocomplete="@i3.AutoComplete"
-                       @bind="formValues[i3.Key]" />
+                       @onchange='e => formValues[i3.Key] = e.Value?.ToString() ?? ""' />
+            }
+            
+            else if(field is Info i3b)
+            {
+                <input id="@i3b.Key"
+                       class="label-space"
+                       type="@i3b.Type"
+                       autocomplete="@i3b.AutoComplete"
+                       @bind="formValues[i3b.Key]" />
             }
         </label>
     }
@@ -59,10 +56,6 @@
 @code{
     Dictionary<string, string> formValues = new()
     {
-        ["firstName"]   = "",
-        ["lastName"]    = "",
-        ["phone"]       = "",
-        ["email"]       = "",
         ["company"]     = "",
         ["eventName"]   = "",
         ["eventDate"]   = "",
@@ -71,54 +64,37 @@
         ["description"] = "",
     };
 
-    
-
-    
-    bool phoneError = false;
     bool submitted = false;
 
-    async Task FormatPhone(ChangeEventArgs e)
-    {
-        var digits = new string(e.Value?.ToString().Where(char.IsDigit).ToArray());
-        if (digits.Length > 10) digits = digits[..10];
-
-        if (digits.Length >= 7)
-            formValues["phone"] = $"{digits[..3]}-{digits[3..6]}-{digits[6..]}";
-        else if (digits.Length >= 4)
-            formValues["phone"] = $"{digits[..3]}-{digits[3..]}";
-        else
-            formValues["phone"] = digits;
-
-        await JS.InvokeVoidAsync("eval", $"document.getElementById('phone').value='{formValues["phone"]}'");
-    }
-
-    void ValidatePhone()
-    {
-        var digits = new string(formValues["phone"].Where(char.IsDigit).ToArray());
-        phoneError = digits.Length > 0 && digits.Length < 10;
-    }
-
     bool IsFormValid() =>
-        formValues.All(kv => !string.IsNullOrWhiteSpace(kv.Value)) &&
-        new string(formValues["phone"].Where(char.IsDigit).ToArray()).Length == 10;
+        formValues.Where(kv => kv.Key != "company" && kv.Key != "eventName")
+                  .All(kv => !string.IsNullOrWhiteSpace(kv.Value)) &&
+        personalInfo.FormValues.All(kv => !string.IsNullOrWhiteSpace(kv.Value));
+    
+
+    List<IQuoteField> EventInfo = new()
+    {
+        new Info("COMPANY",           "company",     "organization", "text"),
+        new Info("EVENT NAME",        "eventName",   "off",          "text"),
+        new Info("EVENT DATE",        "eventDate",   "off",          "date"),
+        new DropdownField("EVENT TYPE", "eventType", new(){ "Corporate", "Wedding", "Festival", "Trade Show", "Political", "Community", "Other" }),
+        new Info("VENUE OR LOCATION", "venue",       "off",          "text"),
+        new Info("DESCRIPTION",       "description", "off",          "textarea"),
+    };
+
 
     void Submit()
     {
         submitted = true;
-        if (!IsFormValid()) return;
-        // handle submission here
-    }
+        if (!IsFormValid() || !FormHelper.IsPhoneValid(personalInfo.FormValues["phone"])) return;
 
-    List<IQuoteField> EventInfo = new (){
-        new Info("FIRST NAME",       "firstName",   "given-name",   "text"),
-        new Info("LAST NAME",        "lastName",    "family-name",  "text"),
-        new Info("PHONE NUMBER",     "phone",       "tel",          "text"),
-        new Info("EMAIL ADDRESS",    "email",       "email",        "email"),
-        new Info("COMPANY",          "company",     "organization", "text"),
-        new Info("EVENT NAME",       "eventName",   "off",          "text"),
-        new Info("EVENT DATE",       "eventDate",   "off",          "date"),
-        new DropdownField("EVENT TYPE", "eventType", new(){ "Corporate", "Wedding", "Festival", "Trade Show", "Political", "Community", "Other" }),
-        new Info("VENUE OR LOCATION","venue",       "off",          "text"),
-        new Info("DESCRIPTION",       "description", "description", "textarea"),
-    };
+        var data = personalInfo.FormValues
+            .Concat(formValues)
+            .ToDictionary(kv => kv.Key, kv => kv.Value);
+
+        foreach (var kv in data)
+            Console.WriteLine($"{kv.Key}: {kv.Value}");
+
+        Nav.NavigateTo("/quote-submitted");
+    }
 }

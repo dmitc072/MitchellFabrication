@@ -7,6 +7,26 @@
   font-size: 30px;
 }
 
+label {
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 530px) {
+  span {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
 @media (max-width: 440px) {
   .title {
     font-size: 2.2rem;
