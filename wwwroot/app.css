@@ -1,8 +1,13 @@
 html,
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
+footer {
+  margin-top: auto;
+}
 a,
 .btn-link {
   color: #006bb7;
@@ -61,11 +66,6 @@ h1:focus {
   border-color: #929292;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -74,6 +74,10 @@ h1:focus {
 
 .center {
   margin: auto auto;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .background {
@@ -100,6 +104,7 @@ h1:focus {
 
 .letter-spacing {
   letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .red {
@@ -133,8 +138,130 @@ h1:focus {
   width: 50vw;
 }
 
+.info-card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  width: 400px;
+}
+
+.info-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.popular-item {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.popular-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.popular-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+  color: white;
+}
+
+.popular-desc {
+  font-size: 11px;
+  color: #888;
+  font-family: monospace;
+  margin: 0;
+}
+
+.materials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.material-pill {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.field-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  margin: 15px 0;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+input {
+  border-radius: 7px;
+}
+
+select {
+  border-radius: 7px;
+}
+
+textarea {
+  border-radius: 7px;
+}
+
+.quote-card {
+  width: 500px;
+  height: auto;
+  margin: 30px auto;
+  background-color: rgb(249, 249, 248);
+  box-shadow: 5px 5px 10px black;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.btn-active {
+  font-weight: 700;
+  border: 2px solid black;
+  box-shadow: 5px 5px 10px black;
+  background-color: rgba(200, 55, 55, 1);
+  color: white;
+}
+
 @media (max-width: 576px) {
   .quote {
     width: 80vw;
   }
+
+  .quote-card {
+    width: 98%;
+    padding: 10px;
+  }
+}
+
+.label-space {
+  margin: 0 0 0 10px;
 }

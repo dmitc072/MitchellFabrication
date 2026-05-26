@@ -36,8 +36,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lL0hvbWUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/Services.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9TZXJ2aWNlcy5yYXpvcg==
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/QuoteSubmitted.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvUXVvdGVTdWJtaXR0ZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/CarpentryCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9DYXJwZW50cnlDYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/EventProductionCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9FdmVudFByb2R1Y3Rpb25DYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/LaserEngravingCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9MYXNlckVuZ3JhdmluZ0NhcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/PrintSignageCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9QcmludFNpZ25hZ2VDYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/ThreeDPrintingCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9UaHJlZURQcmludGluZ0NhcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Weather.razor]
@@ -46,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Shared/SectionHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9TaGFyZWQvU2VjdGlvbkhlYWRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/_Imports.razor]
@@ -83,3 +107,27 @@ build_metadata.AdditionalFiles.CssScope = b-jeqv742r1f
 [/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Home/ServicesAndCapabilities.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lL1NlcnZpY2VzQW5kQ2FwYWJpbGl0aWVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-o8fzyh4598
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/EventQuote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvRXZlbnRRdW90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-er5yq75lal
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/LaserQuote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvTGFzZXJRdW90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-92hzywq7kr
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/PrintQuote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvUHJpbnRRdW90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-rnhw1yz0zn
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/Quote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvUXVvdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-hqwt1ll1dr
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Quotes/ThreeDQuote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9RdW90ZXMvVGhyZWVEUXVvdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cevfgcxwpt
+
+[/Users/duanemitchell/Documents/Coding/OurBusinessProject/MitchellFabrication/Components/Pages/Services/Services.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZXJ2aWNlcy9TZXJ2aWNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ms86ux4hz9

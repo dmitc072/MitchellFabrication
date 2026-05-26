@@ -1,0 +1,100 @@
+@inject PersonalInfo personalInfo
+@inject NavigationManager Nav
+
+<div class="quote-field">
+    @foreach(var field in EventInfo)
+    {
+        <label class='@((field is Info fi && fi.Type == "textarea") ? "field-column" : "flex-row") field-row'>
+            <span>@field.Label</span>
+            @if(field is DropdownField dd)
+            {
+                <select @bind="formValues[dd.Key]">
+                    <option value="">-- Select --</option>
+                    @foreach(var option in dd.Options)
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+            }
+            else if(field is Info i && i.Type == "textarea")
+            {
+                <textarea id="@i.Key"
+                          maxlength="500"
+                          @bind="formValues[i.Key]"
+                          @bind:event="oninput">
+                </textarea>
+                <p class="small-font">@formValues[i.Key].Length / 500</p>
+            }
+            else if(field is Info i3 && i3.Type == "date")
+            {
+                <input id="@i3.Key"
+                       class="label-space"
+                       type="date"
+                       min='@DateTime.Today.ToString("yyyy-MM-dd")'
+                       value="@formValues[i3.Key]"
+                       autocomplete="@i3.AutoComplete"
+                       @onchange='e => formValues[i3.Key] = e.Value?.ToString() ?? ""' />
+            }
+            
+            else if(field is Info i3b)
+            {
+                <input id="@i3b.Key"
+                       class="label-space"
+                       type="@i3b.Type"
+                       autocomplete="@i3b.AutoComplete"
+                       @bind="formValues[i3b.Key]" />
+            }
+        </label>
+    }
+    @if(submitted && !IsFormValid())
+    {
+        <p class="small-font red">Please fill out all fields before submitting.</p>
+    }
+    <button type="button" @onclick="Submit">SUBMIT</button>
+</div>
+
+@code{
+    Dictionary<string, string> formValues = new()
+    {
+        ["company"]     = "",
+        ["eventName"]   = "",
+        ["eventDate"]   = "",
+        ["eventType"]   = "",
+        ["venue"]       = "",
+        ["description"] = "",
+    };
+
+    bool submitted = false;
+
+    bool IsFormValid() =>
+        formValues.Where(kv => kv.Key != "company" && kv.Key != "eventName")
+                  .All(kv => !string.IsNullOrWhiteSpace(kv.Value)) &&
+        personalInfo.FormValues.All(kv => !string.IsNullOrWhiteSpace(kv.Value));
+    
+
+    List<IQuoteField> EventInfo = new()
+    {
+        new Info("COMPANY",           "company",     "organization", "text"),
+        new Info("EVENT NAME",        "eventName",   "off",          "text"),
+        new Info("EVENT DATE",        "eventDate",   "off",          "date"),
+        new DropdownField("EVENT TYPE", "eventType", new(){ "Corporate", "Wedding", "Festival", "Trade Show", "Political", "Community", "Other" }),
+        new Info("VENUE OR LOCATION", "venue",       "off",          "text"),
+        new Info("DESCRIPTION",       "description", "off",          "textarea"),
+    };
+
+
+    void Submit()
+    {
+        submitted = true;
+        if (!IsFormValid() || !FormHelper.IsPhoneValid(personalInfo.FormValues["phone"])) return;
+
+        var data = personalInfo.FormValues
+            .Concat(formValues)
+            .ToDictionary(kv => kv.Key, kv => kv.Value);
+
+        foreach (var kv in data)
+            Console.WriteLine($"{kv.Key}: {kv.Value}");
+
+        Nav.NavigateTo("/quote-submitted");
+    }
+}

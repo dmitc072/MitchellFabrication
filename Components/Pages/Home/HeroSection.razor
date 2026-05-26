@@ -1,4 +1,6 @@
 @inject DataService Data
+@inject NavigationManager Nav
+
 
 <div class="row even">
     <div class="column">
@@ -11,7 +13,7 @@
         <br>
         <div class="button">
             <button class="quote-button background-red">Request a Free Quote</button>
-            <button class="quote-button background-red">View our Services</button>
+            <button class="quote-button background-red" @onclick='() => Nav.NavigateTo("/services")'>View our Services</button>
         </div>
         <br />
         <div class="row center">
@@ -58,10 +60,12 @@
  string selectedService = "";
 
  void SelectService(string s){
+    Data.SelectedService = s;
     selectedService = s;
  }
 
  void StartButton(){
-    Console.WriteLine(selectedService);
- }
+    Console.WriteLine(Data.SelectedService);
+    Nav.NavigateTo("/quote"); 
+}
 }

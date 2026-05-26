@@ -1,4 +1,6 @@
 using MitchellFabrication.Components;
+using MitchellFabrication.Models;
+using MitchellFabrication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSingleton<DataService>();
+builder.Services.AddScoped<PersonalInfo>();
+builder.Services.AddScoped<LocationService>();
+builder.Services.AddScoped(sp =>
+{
+    var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("X-CSCAPI-KEY", "b8598348fa774a74e879aa6b8327a7d33ddaf67accbeb3700d3ffe32b9cc8f1d");
+    return client;
+});
 
 var app = builder.Build();
 

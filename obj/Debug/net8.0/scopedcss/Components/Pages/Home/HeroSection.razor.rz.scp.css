@@ -22,6 +22,7 @@
 .button[b-0yeccw5z5r] {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 
 .border[b-0yeccw5z5r] {
@@ -53,6 +54,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  text-align: center;
 }
 
 @media (max-width: 576px) {

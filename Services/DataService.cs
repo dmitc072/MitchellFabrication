@@ -1,7 +1,11 @@
+namespace MitchellFabrication.Services;
+
 public class DataService
 {
+    public string SelectedService {get; set;}
+
     public string Company{get;}= "Mitchell & Fabrication";
-    
+
     public record Service(string Title, string Description, List<string> Buttons);
 
     public List<Service> Services { get; } = new()
@@ -27,6 +31,7 @@ public class DataService
         {"phone","410-877-7260"},
         {"email", "duane.a.mitchell@outlook.com"},
         {"location", "Conyers, GA"}
-
     };
+
+
 }

@@ -1,11 +1,14 @@
 @inject DataService Data
 
+
 <div>
-    <br>
-    <p class="small-font red line-before letter-spacing" >WHAT WE DO</p>
-    <h1 style="font-weight:800"> Services & <span style="font-weight:300; font-style:italic; color:grey">Capabilities</span></h1>
-    <p class="quote"> One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish.</p>
-    <!-- Desktop: show all cards -->
+
+    <SectionHeader
+        Label="WHAT WE DO"
+        Title="Services &amp;"
+        Subtitle="Capabilities"
+        Quote="One shop handles everything — print to fabrication to event production. No outsourcing. No middlemen. Your project, start to finish." />
+     <!-- Desktop: show all cards -->
     <div class="row services-row desktop-only">
         @foreach(var s in Data.Services)
         {
